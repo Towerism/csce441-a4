@@ -7,14 +7,17 @@
 //  www.gnu.org/licenses/gpl-3.0.en.html for license terms.
 
 #include "delegate/eventDelegator.hh"
+#include "entity/camera.hh"
 #include "entity/insect.hh"
 #include "util/vector2.hh"
 
 #include <GL/glut.h>
+#include <iostream>
 
 // Captures events and delegates them to entities
 EventDelegator eventDelegator;
 Vector2 screenDimensions = { 800, 600 };
+Entity* camera = new Camera(0, 0, 0);
 
 void initGlut() {
   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
@@ -37,6 +40,7 @@ void initDisplay() {
 void initEntities() {
   Entity* insect = new Insect(0, 0, -30);
   eventDelegator.add(insect);
+  eventDelegator.add(camera);
 }
 
 void init(void) {
@@ -58,9 +62,28 @@ void reshape(int w, int h) {
 
 #include "util/transform3D.hh"
 void draw(void) {
+  Vector3 cameraPos = camera->getPosition();
+
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+  std::cout << "Camera position: "
+            << cameraPos.x << ", "
+            << cameraPos.y << ", "
+            << cameraPos.z << std::endl;
+  glPushMatrix();
+  gluLookAt(cameraPos.x,
+            cameraPos.y,
+            cameraPos.z,
+
+            cameraPos.x,
+            cameraPos.y,
+            cameraPos.z - 1.0,
+
+            0.0,
+            -1.0,
+            0.0);
   eventDelegator.draw();
+  glPopMatrix();
 
   glutSwapBuffers();
 }
