@@ -14,7 +14,7 @@ matter what mode you are in, you can rotate the camera.
 
 To rotate the camera, click and drag the mouse left and right.
 * Modal Control System
-The control system beings in =NORMAL= mode. From =NORMAL= mode, you can change
+The control system begins in =NORMAL= mode. From =NORMAL= mode, you can change
 to the =HEAD=, =CAMERA=, and =LEGS= modes. From =CAMERA= mode, you can change to
 the =CAMERA_PAN= mode. From =LEGS= mode, you can change from the modes =LEG1= to
 =LEG6=. From each of the individual =LEG#= modes, you can switch to the
