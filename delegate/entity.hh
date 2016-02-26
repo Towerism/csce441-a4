@@ -21,17 +21,17 @@
 // opengl callbacks
 class Entity {
 public:
-  Entity(int x, int y, int z)
+  Entity(int x = 0, int y = 0, int z = 0)
     : position({x, y, z}), origin({0, 0, 0}), rotations(1, {0.0, {0, 0, 0}}) { }
 
   // Handle idle event
-  virtual void update() = 0;
+  virtual void update() {}
 
   // Handle drawing event
-  virtual void draw() = 0;
+  virtual void draw() {}
 
   // Handle keyboard event
-  virtual void keyboardEvent(unsigned char key, Vector2 mousePosition) = 0;
+  virtual void keyboardEvent(unsigned char key, Vector2 mousePosition) {}
 
   // Handle mouse event
   virtual void mouseEvent(int button, int state, Vector2 mousePosition);

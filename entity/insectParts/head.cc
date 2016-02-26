@@ -22,18 +22,4 @@ void Head::draw() {
 }
 
 void Head::keyboardEvent(unsigned char key, Vector2 mousePosition) {
-  switch (key) {
-  case 't':
-    position.y += 1;
-    break;
-  case 'f':
-    position.x -= 1;
-    break;
-  case 'g':
-    position.y -= 1;
-    break;
-  case 'h':
-    position.x += 1;
-    break;
-  }
 }

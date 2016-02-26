@@ -6,18 +6,20 @@
 //  file LICENSE in the root directory or visit
 //  www.gnu.org/licenses/gpl-3.0.en.html for license terms.
 
+#include <GL/glut.h>
+#include <iostream>
+
 #include "delegate/eventDelegator.hh"
 #include "entity/camera.hh"
 #include "entity/insect.hh"
+#include "entity/mode.hh"
 #include "util/vector2.hh"
-
-#include <GL/glut.h>
-#include <iostream>
 
 // Captures events and delegates them to entities
 EventDelegator eventDelegator;
 Vector2 screenDimensions = { 800, 600 };
-Entity* camera = new Camera(0, 0, 0);
+Camera* camera = new Camera(0, 0, 0);
+Mode* mode = new Mode();
 
 void initGlut() {
   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
@@ -41,6 +43,9 @@ void initEntities() {
   Entity* insect = new Insect(0, 0, -30);
   eventDelegator.add(insect);
   eventDelegator.add(camera);
+
+  Mode::setInstance(mode);
+  eventDelegator.add(mode);
 }
 
 void initLighting() {

@@ -12,9 +12,11 @@
 
 #include "legLower.hh"
 
-LegUpper::LegUpper(int x, int y, int z) : Entity(x, y, z) {
-  Entity* legLower = new LegLower(0, 0, 8);
+LegUpper::LegUpper(int x, int y, int z, Mode::mode_t mode, Mode::mode_t lowerMode)
+  : Entity(x, y, z), mode(mode) {
+  Entity* legLower = new LegLower(0, 0, 8, lowerMode);
   children.emplace_back(legLower);
+  rotation.axis = { 1, 0, 0 };
 }
 
 void LegUpper::update() {
@@ -26,4 +28,10 @@ void LegUpper::draw() {
 }
 
 void LegUpper::keyboardEvent(unsigned char key, Vector2 mousePosition) {
+  if (Mode::getInstance()->getMode() == mode) {
+    if (key == 'w')
+      rotation.angle += 1;
+    if (key == 's')
+      rotation.angle -= 1;
+  }
 }

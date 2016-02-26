@@ -10,6 +10,8 @@
 
 #include <GL/glut.h>
 
+#include "entity/mode.hh"
+
 void Camera::update() {
   
 }
@@ -19,6 +21,10 @@ void Camera::draw() {
 
 void Camera::keyboardEvent(unsigned char key, Vector2 mousePosition) {
   int delta = 1;
+
+  if (Mode::getInstance()->getMode() != Mode::CAMERA_PAN)
+    return;
+
   switch(key) {
   case 'w':
     position.z -= delta;
