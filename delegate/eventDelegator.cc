@@ -24,6 +24,8 @@ void EventDelegator::draw(std::unique_ptr<Entity>& entity) {
   glPushMatrix();
     
   Transform3D::translate(entity->getPosition());
+  for (auto rotation : entity->getRotations())
+    Transform3D::rotate(rotation);
   Transform3D::rotate(entity->getRotation());
   entity->draw();
 

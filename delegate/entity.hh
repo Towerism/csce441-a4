@@ -22,7 +22,7 @@
 class Entity {
 public:
   Entity(int x, int y, int z)
-    : position({x, y, z}), origin({0, 0, 0}), rotation(0.0, {0, 0, 0}) { }
+    : position({x, y, z}), origin({0, 0, 0}), rotations(1, {0.0, {0, 0, 0}}) { }
 
   // Handle idle event
   virtual void update() = 0;
@@ -46,9 +46,10 @@ public:
 
   const Vector3& getPosition() const { return position; }
   const Vector3& getOrigin() const { return origin; }
+  const auto& getRotations() const { return rotations; }
   const Rotation& getRotation() const { return rotation; }
 
-  void rotate(float angle, Vector3 axis) { rotation = { angle, axis }; }
+  void rotate(float angle, Vector3 axis) { rotations.push_back({ angle, axis }); }
 
   std::vector<std::unique_ptr<Entity>>& getChildren() { return children; }
 
@@ -57,6 +58,7 @@ public:
 protected:
   Vector3 position, origin;
   Rotation rotation;
+  std::vector<Rotation> rotations;
 
   std::vector<std::unique_ptr<Entity>> children;
 

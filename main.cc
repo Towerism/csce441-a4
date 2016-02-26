@@ -46,16 +46,26 @@ void initEntities() {
 void initLighting() {
   GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
   GLfloat mat_shininess[] = { 25.0 };
-  GLfloat light0_parameters[] = { 0, 0, 0, 0 };
+  GLfloat light_ambient[]  = { 0.0f, 0.0f, 0.0f, 1.0f };
+  GLfloat light_diffuse[]  = { 1.0f, 1.0f, 1.0f, 1.0f };
+  GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+  GLfloat light_position[] = { 2.0f, 5.0f, 5.0f, 0.0f };
   glClearColor (0.0, 0.0, 0.0, 0.0);
   glShadeModel (GL_SMOOTH);
 
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
-  glLightfv(GL_LIGHT0, GL_SPECULAR, light0_parameters);
+
+  glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+  glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
+  glLightfv(GL_LIGHT2, GL_SPECULAR, light_specular);
+  glLightfv(GL_LIGHT3, GL_POSITION, light_position);
 
   glEnable(GL_LIGHTING);
   glEnable(GL_LIGHT0);
+  glEnable(GL_LIGHT1);
+  glEnable(GL_LIGHT2);
+  glEnable(GL_LIGHT3);
 }
 
 void init(void) {
