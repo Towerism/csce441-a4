@@ -49,17 +49,18 @@ void initEntities() {
 }
 
 void initLighting() {
-  GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
-  GLfloat mat_shininess[] = { 25.0 };
-  GLfloat light_ambient[]  = { 0.0f, 0.0f, 0.0f, 1.0f };
-  GLfloat light_diffuse[]  = { 1.0f, 1.0f, 1.0f, 1.0f };
-  GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+  GLfloat mat_specular[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+  GLfloat mat_shininess[] = { 0.0f };
+  GLfloat light_ambient[]  = { 0.0f, 0.0f, 0.0f, 0.25f };
+  GLfloat light_diffuse[]  = { 1.0f, 1.0f, 1.0f, 0.25f };
+  GLfloat light_specular[] = { 1.0f, 1.0f, 1.0f, 0.25f };
   GLfloat light_position[] = { 2.0f, 5.0f, 5.0f, 0.0f };
   glClearColor (0.0, 0.0, 0.0, 0.0);
   glShadeModel (GL_SMOOTH);
 
   glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
   glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+  glEnable(GL_COLOR_MATERIAL);
 
   glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
   glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
@@ -92,6 +93,7 @@ void reshape(int w, int h) {
 }
 
 #include "util/transform3D.hh"
+#include "util/randomColor.hh"
 void draw(void) {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

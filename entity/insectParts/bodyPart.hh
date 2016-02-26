@@ -8,17 +8,22 @@
 
 #pragma once
 
+#include "color/colorSetter.hh"
 #include "entity/mode.hh"
+#include "util/randomColor.hh"
 #include "util/rotation.hh"
 
 class BodyPart {
 public:
-  BodyPart(Mode::mode_t mode) : mode(mode) {}
+  BodyPart(Mode::mode_t mode = Mode::NORMAL)
+    : mode(mode) { color = RandomColor::nextColor(); }
 
   void rotateForMode(unsigned char key, Rotation& rotation);
 
 private:
   Mode::mode_t mode;
-
   const float maxAngle = 45.0;
+
+protected:
+  ColorSetter color;
 };

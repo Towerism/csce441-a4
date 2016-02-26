@@ -20,7 +20,7 @@ LegUpper::LegUpper(int x, int y, int z, Mode::mode_t mode, Mode::mode_t lowerMod
 }
 
 void LegUpper::draw() {
-  glColor3f(1.0, 0.0, 0.0);
+  color();
   glutSolidCone(0.5, 9, 20, 20);
 }
 

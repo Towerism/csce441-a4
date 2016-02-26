@@ -20,7 +20,7 @@ void LegLower::update() {
 }
 
 void LegLower::draw() {
-  glColor3f(1.0, 0.0, 0.0);
+  color();
   glutSolidCone(0.2, 9, 20, 20);
   glutSolidSphere(0.5, 50, 50);
 }

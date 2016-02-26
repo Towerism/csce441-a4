@@ -10,9 +10,10 @@
 
 #include "delegate/entity.hh"
 
+#include "bodyPart.hh"
 #include "util/vector2.hh"
 
-class Body : public Entity {
+class Body : public Entity, BodyPart {
 public:
   Body(int x, int y, int z);
 

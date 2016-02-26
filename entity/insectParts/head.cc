@@ -14,6 +14,6 @@ Head::Head(int x, int y, int z) : Entity(x, y, z) {
 }
 
 void Head::draw() {
-  glColor3f(1.0, 1.0, 1.0);
+  color();
   glutSolidSphere(2, 50, 50);
 }
