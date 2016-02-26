@@ -16,33 +16,52 @@ void EventDelegator::add(Entity* entity) {
 }
 
 void EventDelegator::draw() {
-  drawEntities();
-}
-
-void EventDelegator::drawEntities() {
   for (auto& entity : entities)
-    drawEntity(entity);
+    draw(entity);
 }
 
-void EventDelegator::drawEntity(std::unique_ptr<Entity>& entity) {
+void EventDelegator::draw(std::unique_ptr<Entity>& entity) {
   glPushMatrix();
+    
   Transform3D::translate(entity->getPosition());
-  Transform3D::rotate(entity->getSpin(), entity->getOrigin());
+  Transform3D::rotate(entity->getRotation());
   entity->draw();
+
+  for (auto& child : entity->getChildren())
+    draw(child);
   glPopMatrix();
 }
 
 void EventDelegator::idle() {
   for (auto& entity : entities)
-    entity->update();
+    idle(entity);
+}
+
+void EventDelegator::idle(std::unique_ptr<Entity>& entity) {
+  entity->update();
+  for (auto& child : entity->getChildren())
+    idle(child);
 }
 
 void EventDelegator::mouse(int button, int status, Vector2 mousePosition) {
-  for (auto& entity : entities)
-    entity->mouseEvent(button, status, mousePosition);
+  for (auto& entity : entities) {
+    mouse(entity, button, status, mousePosition);
+  }
+}
+
+void EventDelegator::mouse(std::unique_ptr<Entity>& entity, int button, int status, Vector2 mousePosition) {
+  entity->mouseEvent(button, status, mousePosition);
+  for (auto& child : entity->getChildren())
+    mouse(child, button, status, mousePosition);
 }
 
 void EventDelegator::keyboard(unsigned char key, Vector2 mousePosition) {
   for (auto& entity : entities)
-    entity->keyboardEvent(key, mousePosition);
+    keyboard(entity, key, mousePosition);
+}
+
+void EventDelegator::keyboard(std::unique_ptr<Entity>& entity, unsigned char key, Vector2 mousePosition) {
+  entity->keyboardEvent(key, mousePosition);
+  for (auto& child : entity->getChildren())
+    keyboard(child, key, mousePosition);
 }

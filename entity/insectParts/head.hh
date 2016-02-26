@@ -12,9 +12,9 @@
 
 #include "util/vector2.hh"
 
-class Insect : public Entity {
+class Head : public Entity {
 public:
-  Insect(int x, int y, int z);
+  Head(int x, int y, int z);
 
   void update() override;
   void draw() override;

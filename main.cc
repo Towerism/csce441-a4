@@ -20,7 +20,7 @@ Vector2 screenDimensions = { 800, 600 };
 Entity* camera = new Camera(0, 0, 0);
 
 void initGlut() {
-  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+  glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
   glutInitWindowSize (screenDimensions.x, screenDimensions.y);
   glutInitWindowPosition (100, 100);
   glutCreateWindow ("Martin Fracker - Assignment 2");
@@ -32,9 +32,9 @@ void initDisplay() {
   glEnable(GL_CULL_FACE);
   glCullFace(GL_BACK); 
  
+  glDepthMask(GL_TRUE);
   glEnable(GL_DEPTH_TEST);
-  glDepthFunc(GL_LESS);
-  glShadeModel (GL_FLAT);
+  glDepthFunc(GL_LEQUAL);
 }
 
 void initEntities() {
@@ -43,10 +43,26 @@ void initEntities() {
   eventDelegator.add(camera);
 }
 
+void initLighting() {
+  GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+  GLfloat mat_shininess[] = { 25.0 };
+  GLfloat light0_parameters[] = { 0, 0, 0, 0 };
+  glClearColor (0.0, 0.0, 0.0, 0.0);
+  glShadeModel (GL_SMOOTH);
+
+  glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+  glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+  glLightfv(GL_LIGHT0, GL_SPECULAR, light0_parameters);
+
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+}
+
 void init(void) {
   initGlut();
   initDisplay();
   initEntities();
+  initLighting();
 }
 
 void reshape(int w, int h) {
@@ -55,7 +71,7 @@ void reshape(int w, int h) {
   glViewport (0, 0, (GLsizei) w, (GLsizei) h);
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
-  gluPerspective(90.0, aspectRatio, 2.0, 500.0);
+  gluPerspective(70.0, aspectRatio, 2.0, 500.0);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 }
@@ -66,10 +82,6 @@ void draw(void) {
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-  std::cout << "Camera position: "
-            << cameraPos.x << ", "
-            << cameraPos.y << ", "
-            << cameraPos.z << std::endl;
   glPushMatrix();
   gluLookAt(cameraPos.x,
             cameraPos.y,
@@ -80,7 +92,7 @@ void draw(void) {
             cameraPos.z - 1.0,
 
             0.0,
-            -1.0,
+            1.0,
             0.0);
   eventDelegator.draw();
   glPopMatrix();

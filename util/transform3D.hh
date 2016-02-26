@@ -2,7 +2,8 @@
 
 #include <GL/glut.h>
 
-#include "util/vector3.hh"
+#include "vector3.hh"
+#include "rotation.hh"
 
 namespace Transform3D {
 
@@ -10,6 +11,6 @@ namespace Transform3D {
 void translate(Vector3 translation);
 
 // rotate current matrix about (x, y, z) by spin degrees
-void rotate(float spin, Vector3 origin);
+void rotate(Rotation rotation);
 
 }

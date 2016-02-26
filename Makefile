@@ -1,10 +1,11 @@
 SRCS := $(wildcard *.cc) \
-	$(wildcard **/*.cc)
+	$(wildcard **/*.cc) \
+	$(wildcard **/**/*.cc)
 OBJS := $(SRCS:.cc=.o)
 DEPS := $(OBJS:.o=.d)
 EXEC ?= main
 
-CXXFLAGS ?= -std=c++14 -Wall --pedantic -I.
+CXXFLAGS ?= -std=c++14 -g -Wall --pedantic -I.
 LDFLAGS ?= -lglut -lGL -lGLU
 CXX ?= g++
 RM ?= rm -rf

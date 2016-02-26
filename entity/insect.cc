@@ -8,15 +8,20 @@
 
 #include "insect.hh"
 
+#include "insectParts/body.hh"
+
 #include <GL/glut.h>
+
+Insect::Insect(int x, int y, int z) : Entity(x, y, z) {
+  auto* body = new Body(0, 0, 0);
+  children.emplace_back(body);
+}
 
 void Insect::update() {
   
 }
 
 void Insect::draw() {
-  glColor3f(1.0, 1.0, 1.0);
-  glutSolidSphere(5, 50, 50);
 }
 
 void Insect::keyboardEvent(unsigned char key, Vector2 mousePosition) {

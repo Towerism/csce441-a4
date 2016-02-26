@@ -10,6 +10,10 @@
 
 #include <GL/glut.h>
 
+#include <memory>
+#include <vector>
+
+#include "util/rotation.hh"
 #include "util/vector2.hh"
 #include "util/vector3.hh"
 
@@ -17,7 +21,8 @@
 // opengl callbacks
 class Entity {
 public:
-  Entity(int x, int y, int z) : position({x, y, z}), origin({0, 0, 0}) { }
+  Entity(int x, int y, int z)
+    : position({x, y, z}), origin({0, 0, 0}), rotation(0.0, {0, 0, 0}) { }
 
   // Handle idle event
   virtual void update() = 0;
@@ -41,17 +46,23 @@ public:
 
   const Vector3& getPosition() const { return position; }
   const Vector3& getOrigin() const { return origin; }
-  GLfloat getSpin() const { return spin; }
+  const Rotation& getRotation() const { return rotation; }
+
+  void rotate(float angle, Vector3 axis) { rotation = { angle, axis }; }
+
+  std::vector<std::unique_ptr<Entity>>& getChildren() { return children; }
 
   virtual ~Entity() = default;
 
 protected:
   Vector3 position, origin;
+  Rotation rotation;
+
+  std::vector<std::unique_ptr<Entity>> children;
 
   // last* variables indicate what state the mouse was in
   // for the most recently captured mouse event
   int lastMouseX, lastMouseY, lastMouseState;
-  GLfloat spin = 0.0; // how much the polygon on screen should spin
 
   void saveMouseState(int state, Vector2 mousePosition);
 };

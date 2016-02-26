@@ -6,10 +6,8 @@ void translate(Vector3 translation) {
   glTranslatef(translation.x, translation.y, translation.z);
 }
 
-void rotate(float spin, Vector3 origin) {
-  translate(-origin);
-  glRotatef(spin, 0, 0, 1);
-  translate(origin);
+void rotate(Rotation rotation) {
+  glRotatef(rotation.angle, rotation.axis.x, rotation.axis.y, rotation.axis.z);
 }
 
 }

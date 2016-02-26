@@ -38,6 +38,8 @@ public:
 private:
   std::vector<std::unique_ptr<Entity>> entities;
 
-  void drawEntities();
-  void drawEntity(std::unique_ptr<Entity>& entity);
+  void draw(std::unique_ptr<Entity>& entity);
+  void idle(std::unique_ptr<Entity>& entity);
+  void mouse(std::unique_ptr<Entity>& entity, int button, int status, Vector2 mousePosition);
+  void keyboard(std::unique_ptr<Entity>& entity, unsigned char key, Vector2 mousePosition);
 };
