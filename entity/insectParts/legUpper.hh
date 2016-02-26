@@ -10,17 +10,14 @@
 
 #include "delegate/entity.hh"
 
+#include "bodyPart.hh"
 #include "entity/mode.hh"
 #include "util/vector2.hh"
 
-class LegUpper : public Entity {
+class LegUpper : public Entity, BodyPart {
 public:
   LegUpper(int x, int y, int z, Mode::mode_t mode, Mode::mode_t lower_mode);
 
-  void update() override;
   void draw() override;
   void keyboardEvent(unsigned char key, Vector2 mousePosition) override;
-
-private:
-  const Mode::mode_t mode;
 };

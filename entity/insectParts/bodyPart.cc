@@ -6,15 +6,16 @@
 //  file LICENSE in the root directory or visit
 //  www.gnu.org/licenses/gpl-3.0.en.html for license terms.
 
-#pragma once
-
 #include "bodyPart.hh"
-#include "delegate/entity.hh"
-#include "util/vector2.hh"
 
-class HeadPivot : public Entity, BodyPart {
-public:
-  HeadPivot(int x, int y, int z);
+void BodyPart::rotateForMode(unsigned char key, Rotation& rotation) {
+  if (Mode::getInstance()->getMode() == mode) {
+    if (key =='w')
+      if (rotation.angle < maxAngle)
+        rotation.angle += 1;
+    if (key == 's')
+      if (rotation.angle > -maxAngle)
+        rotation.angle -= 1;
+  }
 
-  void keyboardEvent(unsigned char key, Vector2 mousePosition) override;
-};
+}

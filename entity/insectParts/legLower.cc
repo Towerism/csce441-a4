@@ -11,7 +11,7 @@
 #include <GL/glut.h>
 
 LegLower::LegLower(int x, int y, int z, Mode::mode_t mode)
-  : Entity(x, y, z), mode(mode) {
+  : Entity(x, y, z), BodyPart(mode) {
   rotate(100, {1, 0, 0});
   rotation.axis = { 1, 0, 0 };
 }
@@ -26,10 +26,5 @@ void LegLower::draw() {
 }
 
 void LegLower::keyboardEvent(unsigned char key, Vector2 mousePosition) {
-  if (Mode::getInstance()->getMode() == mode) {
-    if (key == 'w')
-      rotation.angle += 1;
-    if (key == 's')
-      rotation.angle -= 1;
-  }
+  rotateForMode(key, rotation);
 }

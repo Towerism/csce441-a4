@@ -57,13 +57,7 @@ Body::Body(int x, int y, int z) : Entity(x, y, z) {
   children.emplace_back(rightLeg6);
 }
 
-void Body::update() {
-}
-
 void Body::draw() {
   glColor3f(1.0, 1.0, 1.0);
   glutSolidSphere(5, 50, 50);
-}
-
-void Body::keyboardEvent(unsigned char key, Vector2 mousePosition) {
 }

@@ -13,17 +13,13 @@
 #include "entity/mode.hh"
 #include "head.hh"
 
-HeadPivot::HeadPivot(int x, int y, int z) : Entity(x, y, z) {
+HeadPivot::HeadPivot(int x, int y, int z)
+  :  Entity(x, y, z), BodyPart(Mode::HEAD) {
   Entity* head = new Head(6, 0, 0);
   children.emplace_back(head);
   rotation.axis = { 0, 1, 0 };
 }
 
 void HeadPivot::keyboardEvent(unsigned char key, Vector2 mousePosition) {
-  if (Mode::getInstance()->getMode() == Mode::HEAD) {
-    if (key == 'w')
-      rotation.angle += 1;
-    if (key == 's')
-      rotation.angle -= 1;
-  }
+  rotateForMode(key, rotation);
 }

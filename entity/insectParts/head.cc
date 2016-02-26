@@ -13,13 +13,7 @@
 Head::Head(int x, int y, int z) : Entity(x, y, z) {
 }
 
-void Head::update() {
-}
-
 void Head::draw() {
   glColor3f(1.0, 1.0, 1.0);
   glutSolidSphere(2, 50, 50);
-}
-
-void Head::keyboardEvent(unsigned char key, Vector2 mousePosition) {
 }

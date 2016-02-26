@@ -8,13 +8,17 @@
 
 #pragma once
 
-#include "delegate/entity.hh"
+#include "entity/mode.hh"
+#include "util/rotation.hh"
 
-#include "util/vector2.hh"
-
-class Head : public Entity {
+class BodyPart {
 public:
-  Head(int x, int y, int z);
+  BodyPart(Mode::mode_t mode) : mode(mode) {}
 
-  void draw() override;
+  void rotateForMode(unsigned char key, Rotation& rotation);
+
+private:
+  Mode::mode_t mode;
+
+  const float maxAngle = 45.0;
 };

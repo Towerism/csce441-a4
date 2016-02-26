@@ -16,7 +16,5 @@ class Body : public Entity {
 public:
   Body(int x, int y, int z);
 
-  void update() override;
   void draw() override;
-  void keyboardEvent(unsigned char key, Vector2 mousePosition) override;
 };
