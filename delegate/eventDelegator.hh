@@ -32,6 +32,9 @@ public:
   // Delegate mouse event to each entity
   void mouse(int button, int status, Vector2 mousePosition);
 
+  // Delegate motion event to each entity
+  void motion(int x, int y);
+
   // Delegate keyboard event to each entity
   void keyboard(unsigned char key, Vector2 mousePosition);
 
@@ -41,5 +44,6 @@ private:
   void draw(std::unique_ptr<Entity>& entity);
   void idle(std::unique_ptr<Entity>& entity);
   void mouse(std::unique_ptr<Entity>& entity, int button, int status, Vector2 mousePosition);
+  void motion(std::unique_ptr<Entity>& entity, int x, int y);
   void keyboard(std::unique_ptr<Entity>& entity, unsigned char key, Vector2 mousePosition);
 };

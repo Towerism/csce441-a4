@@ -12,11 +12,34 @@
 
 #include "entity/mode.hh"
 
-void Camera::update() {
-  
+Camera::Camera(int x, int y, int z) : Entity(x, y, z) {
+  rotation.axis = { 0, 1, 0 };
 }
 
-void Camera::draw() {
+void Camera::look() {
+  gluLookAt(position.x,
+            position.y,
+            position.z,
+
+            position.x,
+            position.y,
+            position.z - 1.0,
+
+            0.0,
+            1.0,
+            0.0);
+}
+
+void Camera::mouseEvent(int button, int status, Vector2 mousePosition) {
+  if (button == GLUT_LEFT_BUTTON) {
+    if (status == GLUT_DOWN)
+      prevMouseX = mousePosition.x;
+  }
+}
+
+void Camera::motionEvent(int x, int y) {
+  rotation.angle += (float)(x - prevMouseX) * 0.2;
+  prevMouseX = x;
 }
 
 void Camera::keyboardEvent(unsigned char key, Vector2 mousePosition) {

@@ -57,6 +57,17 @@ void EventDelegator::mouse(std::unique_ptr<Entity>& entity, int button, int stat
     mouse(child, button, status, mousePosition);
 }
 
+void EventDelegator::motion(int x, int y) {
+  for (auto& entity : entities)
+    motion(entity, x, y);
+}
+
+void EventDelegator::motion(std::unique_ptr<Entity>& entity, int x, int y) {
+  entity->motionEvent(x, y);
+  for (auto& child : entity->getChildren())
+    motion(child, x, y);
+}
+
 void EventDelegator::keyboard(unsigned char key, Vector2 mousePosition) {
   for (auto& entity : entities)
     keyboard(entity, key, mousePosition);

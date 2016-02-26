@@ -14,9 +14,14 @@
 
 class Camera : public Entity {
 public:
-  Camera(int x, int y, int z) : Entity(x, y, z) {}
+  Camera(int x, int y, int z);
 
-  void update() override;
-  void draw() override;
-  void keyboardEvent(unsigned char key, Vector2 mousePosition) override;
+  void look();
+  virtual void mouseEvent(int button, int status, Vector2 mousePosition) override;
+  virtual void motionEvent(int x, int y) override;
+  virtual void keyboardEvent(unsigned char key, Vector2 mousePosition) override;
+
+private:
+
+  int prevMouseX;
 };

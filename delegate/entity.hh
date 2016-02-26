@@ -42,6 +42,8 @@ public:
 
   virtual void rightMouse() {}
 
+  virtual void motionEvent(int x, int y) {}
+
   void setOrigin(Vector3 newOrigin) { origin = newOrigin; }
 
   const Vector3& getPosition() const { return position; }

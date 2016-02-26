@@ -41,8 +41,8 @@ void initDisplay() {
 
 void initEntities() {
   Entity* insect = new Insect(0, 0, -30);
-  eventDelegator.add(insect);
   eventDelegator.add(camera);
+  eventDelegator.add(insect);
 
   Mode::setInstance(mode);
   eventDelegator.add(mode);
@@ -93,22 +93,11 @@ void reshape(int w, int h) {
 
 #include "util/transform3D.hh"
 void draw(void) {
-  Vector3 cameraPos = camera->getPosition();
-
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glPushMatrix();
-  gluLookAt(cameraPos.x,
-            cameraPos.y,
-            cameraPos.z,
-
-            cameraPos.x,
-            cameraPos.y,
-            cameraPos.z - 1.0,
-
-            0.0,
-            1.0,
-            0.0);
+  Transform3D::rotate(camera->getRotation());
+  camera->look();
   eventDelegator.draw();
   glPopMatrix();
 
@@ -124,6 +113,10 @@ void mouse(int button, int status, int x, int y) {
   eventDelegator.mouse(button, status, {x, y});
 }
 
+void motion(int x, int y) {
+  eventDelegator.motion(x, y);
+}
+
 void keyboard(unsigned char key, int x, int y) {
   eventDelegator.keyboard(key, {x, y});
 }
@@ -132,6 +125,7 @@ void attachCallbacks() {
   glutDisplayFunc(draw); 
   glutReshapeFunc(reshape); 
   glutMouseFunc(mouse);
+  glutMotionFunc(motion);
   glutKeyboardFunc(keyboard);
   glutIdleFunc(idle);
 }
