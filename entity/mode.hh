@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include <string>
+
 #include "delegate/entity.hh"
 
 class Mode : public Entity {
@@ -30,6 +32,9 @@ public:
     HEAD
   };
 
+  virtual void update() override;
+  virtual void draw() override;
+
   virtual void keyboardEvent(unsigned char key, Vector2 mousePosition) override;
 
   mode_t getMode() const { return mode; }
@@ -38,9 +43,10 @@ public:
   static void setInstance(Mode* mode) { instance = mode; }
 
 private:
-
   static Mode* instance;
-
   mode_t mode;
 
+  std::string modeIndicator;
+  std::string modeLabel = "Mode: ";
+  std::string modalText;
 };

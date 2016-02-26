@@ -8,7 +8,90 @@
 
 #include "mode.hh"
 
+#include <GL/glut.h>
+
+#include "util/text.hh"
+
 Mode* Mode::instance = nullptr;
+
+void Mode::update() {
+  switch (mode) {
+  case NORMAL:
+    modalText = "NORMAL";
+    break;
+  case CAMERA:
+    modalText = "CAMERA";
+    break;
+  case CAMERA_PAN:
+    modalText = "CAMERA_PAN";
+    break;
+  case HEAD:
+    modalText = "HEADS";
+    break;
+  case LEGS:
+    modalText = "LEGS";
+    break;
+  case LEG1:
+    modalText = "LEG1";
+    break;
+  case LEG2:
+    modalText = "LEG2";
+    break;
+  case LEG3:
+    modalText = "LEG3";
+    break;
+  case LEG4:
+    modalText = "LEG4";
+    break;
+  case LEG5:
+    modalText = "LEG5";
+    break;
+  case LEG6:
+    modalText = "LEG6";
+    break;
+  case LEG1_UPPER:
+    modalText = "LEG1_UPPER";
+    break;
+  case LEG2_UPPER:
+    modalText = "LEG2_UPPER";
+    break;
+  case LEG3_UPPER:
+    modalText = "LEG3_UPPER";
+    break;
+  case LEG4_UPPER:
+    modalText = "LEG4_UPPER";
+    break;
+  case LEG5_UPPER:
+    modalText = "LEG5_UPPER";
+    break;
+  case LEG6_UPPER:
+    modalText = "LEG6_UPPER";
+    break;
+  case LEG1_LOWER:
+    modalText = "LEG1_LOWER";
+    break;
+  case LEG2_LOWER:
+    modalText = "LEG2_LOWER";
+    break;
+  case LEG3_LOWER:
+    modalText = "LEG3_LOWER";
+    break;
+  case LEG4_LOWER:
+    modalText = "LEG4_LOWER";
+    break;
+  case LEG5_LOWER:
+    modalText = "LEG5_LOWER";
+    break;
+  case LEG6_LOWER:
+    modalText = "LEG6_LOWER";
+    break;
+  }
+  modeIndicator = modeLabel + modalText;
+}
+
+void Mode::draw() {
+  Text::display(-1, 0.9, modeIndicator);
+}
 
 void Mode::keyboardEvent(unsigned char key, Vector2 mousePosition) {
   if (mode == NORMAL) {
