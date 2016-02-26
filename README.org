@@ -63,12 +63,12 @@ The following modes can be considered "leaf modes": =HEAD=, =CAMERA_PAN=,
 =LEG#_LOWER=, and =LEG#_UPPER=. This means there is a control scheme associated
 with those modes. Most of the control schemes use only the ~w~ and ~s~
 keys. However, =CAMERA_PAN= mode uses all of ~w~, ~a~, ~s~, and ~d~.
-*** HEAD mode
+*** =HEAD= mode
 While in =HEAD= mode, the ~w~ and ~s~ keys raise and lower the head body part.
-*** CAMERA_PAN mode
+*** =CAMERA_PAN= mode
 While in =CAMERA_PAN= mode, the ~w~, ~s~, ~a~, and ~d~ keys move the camera
 forward, back, left, and right, respectively.
-*** LEG#_UPPER and LEG#_LOWER modes
+*** =LEG#_UPPER= and =LEG#_LOWER= modes
 While in the leaf leg modes, the ~w~ and ~s~ keys raise and lower the
 corresponding leg segment. For example, while in =LEG1_UPPER= mode, the ~w~ and
 ~s~ keys raise and lower the upper segment of the front right leg.
