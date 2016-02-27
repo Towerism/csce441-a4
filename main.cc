@@ -98,8 +98,6 @@ void draw(void) {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glPushMatrix();
-  Transform3D::rotate(camera->getRotation());
-  Transform3D::translate(camera->getPosition());
   camera->look();
   eventDelegator.draw();
   glPopMatrix();

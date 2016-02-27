@@ -12,18 +12,22 @@
 
 #include "entity/mode.hh"
 
+#define PI 3.14159265
+
 Camera::Camera(int x, int y, int z) : Entity(x, y, z) {
-  rotation.axis = { 0, 1, 0 };
+  lookAtX = 0;
+  lookAtY = 0;
+  lookAtZ = -1;
 }
 
 void Camera::look() {
-  gluLookAt(0,
-            0,
-            0,
+  gluLookAt(position.x,
+            position.y,
+            position.z,
 
-            0,
-            0,
-            -1.0,
+            position.x + lookAtX,
+            position.y + lookAtY,
+            position.z + lookAtZ,
 
             0.0,
             1.0,
@@ -38,8 +42,16 @@ void Camera::mouseEvent(int button, int status, Vector2 mousePosition) {
 }
 
 void Camera::motionEvent(int x, int y) {
-  rotation.angle += (float)(x - prevMouseX) * 0.2;
+  rotateLookAt((float)(x - prevMouseX) * 0.2);
   prevMouseX = x;
+}
+
+void Camera::rotateLookAt(float degrees) {
+  float radians = degrees * PI / 180;
+  float x = lookAtX;
+  float z = lookAtZ;
+  lookAtX = x * cos(radians) - z * sin(radians);
+  lookAtZ = z * cos(radians) + x * sin(radians);
 }
 
 void Camera::keyboardEvent(unsigned char key, Vector2 mousePosition) {

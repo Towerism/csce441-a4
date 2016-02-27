@@ -22,6 +22,9 @@ public:
   virtual void keyboardEvent(unsigned char key, Vector2 mousePosition) override;
 
 private:
-
+  float lookAtX, lookAtY, lookAtZ;
   int prevMouseX;
+  float angle = 0;
+
+  void rotateLookAt(float degrees);
 };
