@@ -14,78 +14,18 @@
 
 Mode* Mode::instance = nullptr;
 
+static inline std::string stringFromMode(Mode::mode_t mode) {
+  static const std::string strings[] = {
+    "NORMAL", "CAMERA", "CAMERA_PAN", "HEAD", "LEGS", "LEG1", "LEG2", "LEG3", "LEG4",
+    "LEG5", "LEG6", "LEG1_UPPER", "LEG1_LOWER", "LEG2_UPPER", "LEG2_LOWER",
+    "LEG3_UPPER", "LEG3_LOWER", "LEG4_UPPER", "LEG4_LOWER", "LEG5_UPPER",
+    "LEG5_LOWER", "LEG6_UPPER", "LEG6_LOWER" };
+
+  return strings[mode];
+}
+
 void Mode::update() {
-  switch (mode) {
-  case NORMAL:
-    modalText = "NORMAL";
-    break;
-  case CAMERA:
-    modalText = "CAMERA";
-    break;
-  case CAMERA_PAN:
-    modalText = "CAMERA_PAN";
-    break;
-  case HEAD:
-    modalText = "HEADS";
-    break;
-  case LEGS:
-    modalText = "LEGS";
-    break;
-  case LEG1:
-    modalText = "LEG1";
-    break;
-  case LEG2:
-    modalText = "LEG2";
-    break;
-  case LEG3:
-    modalText = "LEG3";
-    break;
-  case LEG4:
-    modalText = "LEG4";
-    break;
-  case LEG5:
-    modalText = "LEG5";
-    break;
-  case LEG6:
-    modalText = "LEG6";
-    break;
-  case LEG1_UPPER:
-    modalText = "LEG1_UPPER";
-    break;
-  case LEG2_UPPER:
-    modalText = "LEG2_UPPER";
-    break;
-  case LEG3_UPPER:
-    modalText = "LEG3_UPPER";
-    break;
-  case LEG4_UPPER:
-    modalText = "LEG4_UPPER";
-    break;
-  case LEG5_UPPER:
-    modalText = "LEG5_UPPER";
-    break;
-  case LEG6_UPPER:
-    modalText = "LEG6_UPPER";
-    break;
-  case LEG1_LOWER:
-    modalText = "LEG1_LOWER";
-    break;
-  case LEG2_LOWER:
-    modalText = "LEG2_LOWER";
-    break;
-  case LEG3_LOWER:
-    modalText = "LEG3_LOWER";
-    break;
-  case LEG4_LOWER:
-    modalText = "LEG4_LOWER";
-    break;
-  case LEG5_LOWER:
-    modalText = "LEG5_LOWER";
-    break;
-  case LEG6_LOWER:
-    modalText = "LEG6_LOWER";
-    break;
-  }
+  modalText = stringFromMode(mode);
   modeIndicator = modeLabel + modalText;
 }
 
