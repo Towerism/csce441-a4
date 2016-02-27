@@ -16,12 +16,3 @@ Insect::Insect(int x, int y, int z) : Entity(x, y, z) {
   auto* body = new Body(0, 0, 0);
   children.emplace_back(body);
 }
-
-void Insect::update() {
-}
-
-void Insect::draw() {
-}
-
-void Insect::keyboardEvent(unsigned char key, Vector2 mousePosition) {
-}

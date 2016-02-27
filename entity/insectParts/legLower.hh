@@ -17,7 +17,6 @@ class LegLower : public Entity, BodyPart {
 public:
   LegLower(int x, int y, int z, Mode::mode_t mode);
 
-  void update() override;
   void draw() override;
   void keyboardEvent(unsigned char key, Vector2 mousePosition) override;
 };

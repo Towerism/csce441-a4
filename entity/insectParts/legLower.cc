@@ -16,9 +16,6 @@ LegLower::LegLower(int x, int y, int z, Mode::mode_t mode)
   rotation.axis = { 1, 0, 0 };
 }
 
-void LegLower::update() {
-}
-
 void LegLower::draw() {
   color();
   glutSolidCone(0.2, 9, 20, 20);
