@@ -13,6 +13,8 @@
 #include "entity/camera.hh"
 #include "entity/insect.hh"
 #include "entity/mode.hh"
+#include "util/transform3D.hh"
+#include "util/randomColor.hh"
 #include "util/vector2.hh"
 
 // Captures events and delegates them to entities
@@ -92,13 +94,12 @@ void reshape(int w, int h) {
   glLoadIdentity();
 }
 
-#include "util/transform3D.hh"
-#include "util/randomColor.hh"
 void draw(void) {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glPushMatrix();
   Transform3D::rotate(camera->getRotation());
+  Transform3D::translate(camera->getPosition());
   camera->look();
   eventDelegator.draw();
   glPopMatrix();

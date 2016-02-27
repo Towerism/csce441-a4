@@ -17,13 +17,13 @@ Camera::Camera(int x, int y, int z) : Entity(x, y, z) {
 }
 
 void Camera::look() {
-  gluLookAt(position.x,
-            position.y,
-            position.z,
+  gluLookAt(0,
+            0,
+            0,
 
-            position.x,
-            position.y,
-            position.z - 1.0,
+            0,
+            0,
+            -1.0,
 
             0.0,
             1.0,
