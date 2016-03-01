@@ -62,13 +62,13 @@ void Camera::keyboardEvent(unsigned char key, Vector2 mousePosition) {
 
   switch(key) {
   case 'w':
-    position.z -= delta;
+    position.y += delta;
     break;
   case 'a':
     position.x -= delta;
     break;
   case 's':
-    position.z += delta;
+    position.y -= delta;
     break;
   case 'd':
     position.x += delta;
