@@ -21,10 +21,12 @@ public:
   virtual void motionEvent(int x, int y) override;
   virtual void keyboardEvent(unsigned char key, Vector2 mousePosition) override;
 
+  float getZoom() const { return zoom; }
+
 private:
   float lookAtX, lookAtY, lookAtZ;
-  int prevMouseX;
-  float angle = 0;
+  int prevMouseY;
+  float zoom;
 
-  void rotateLookAt(float degrees);
+  void normalizeZoom();
 };

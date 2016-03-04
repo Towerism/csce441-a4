@@ -83,18 +83,22 @@ void init(void) {
   initLighting();
 }
 
+#include <iostream>
+float aspectRatio;
 void reshape(int w, int h) {
-  const float aspectRatio = (float) w / (float) h;
+  aspectRatio = (float) w / (float) h;
 
   glViewport (0, 0, (GLsizei) w, (GLsizei) h);
-  glMatrixMode(GL_PROJECTION);
-  glLoadIdentity();
-  gluPerspective(70.0, aspectRatio, 2.0, 500.0);
-  glMatrixMode(GL_MODELVIEW);
-  glLoadIdentity();
 }
 
 void draw(void) {
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluPerspective(70.0 * camera->getZoom(), aspectRatio, 2.0, 500.0);
+  std::cout << "zoom: " << camera->getZoom() << std::endl;
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
   glPushMatrix();

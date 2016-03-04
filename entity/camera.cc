@@ -18,6 +18,7 @@ Camera::Camera(int x, int y, int z) : Entity(x, y, z) {
   lookAtX = 0;
   lookAtY = 0;
   lookAtZ = -1;
+  zoom = 1;
 }
 
 void Camera::look() {
@@ -37,21 +38,23 @@ void Camera::look() {
 void Camera::mouseEvent(int button, int status, Vector2 mousePosition) {
   if (button == GLUT_LEFT_BUTTON) {
     if (status == GLUT_DOWN)
-      prevMouseX = mousePosition.x;
+      prevMouseY = mousePosition.y;
   }
 }
 
 void Camera::motionEvent(int x, int y) {
-  rotateLookAt((float)(x - prevMouseX) * 0.2);
-  prevMouseX = x;
+  zoom += (float)(y - prevMouseY) * 0.01;
+  normalizeZoom();
+  prevMouseY = y;
 }
 
-void Camera::rotateLookAt(float degrees) {
-  float radians = degrees * PI / 180;
-  float x = lookAtX;
-  float z = lookAtZ;
-  lookAtX = x * cos(radians) - z * sin(radians);
-  lookAtZ = z * cos(radians) + x * sin(radians);
+void Camera::normalizeZoom() {
+  if (zoom > 2.5) {
+    zoom = 2.5;
+  }
+  if (zoom < 0.1) {
+    zoom = 0.1;
+  }
 }
 
 void Camera::keyboardEvent(unsigned char key, Vector2 mousePosition) {
