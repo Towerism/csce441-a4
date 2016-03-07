@@ -16,7 +16,7 @@ To zoom the camera, click and drag the mouse up and down.
 * Modal Control System
 The control system begins in =NORMAL= mode. From =NORMAL= mode, you can change
 to the =HEAD=, =CAMERA=, and =LEGS= modes. From =CAMERA= mode, you can change to
-the =CAMERA_PAN= mode. From =LEGS= mode, you can change to the modes =LEG1= to
+the =CAMERA_PAN= and =CAMERA_DRIVE= modes. From =LEGS= mode, you can change to the modes =LEG1= to
 =LEG6=. From each of the individual =LEG#= modes, you can switch to the
 =LEG#_UPPER= and =LEG#_LOWER= for the corresponding leg.
 
@@ -31,6 +31,7 @@ Here is an overview of the modal system including the corresponding keys:
   - ~h~ -> =HEAD=
   - ~c~ -> =CAMERA=
     - ~p~ -> =CAMERA_PAN=
+    - ~d~ -> =CAMERA_DRIVE=
   - ~l~ -> =LEGS=
     - ~1~ -> =LEG1=
       - ~u~ -> =LEG1_UPPER=
@@ -68,6 +69,9 @@ While in =HEAD= mode, the ~w~ and ~s~ keys raise and lower the head body part.
 *** =CAMERA_PAN= mode
 While in =CAMERA_PAN= mode, the ~w~, ~s~, ~a~, and ~d~ keys move the camera
 up, down, left, and right, respectively.
+*** =CAMERA_DRIVE= mode
+While in =CAMERA_DRIVE= mode, the ~w~ and ~s~ keys drive the camera
+forward and back, respectively.
 *** =LEG#_UPPER= and =LEG#_LOWER= modes
 While in the leaf leg modes, the ~w~ and ~s~ keys raise and lower the
 corresponding leg segment. For example, while in =LEG1_UPPER= mode, the ~w~ and
