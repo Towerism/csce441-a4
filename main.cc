@@ -95,7 +95,6 @@ void draw(void) {
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
   gluPerspective(70.0 * camera->getZoom(), aspectRatio, 2.0, 500.0);
-  std::cout << "zoom: " << camera->getZoom() << std::endl;
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
 
