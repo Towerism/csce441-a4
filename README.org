@@ -10,7 +10,7 @@ This program implements a 3D insect model with the following parts:
 You can use a modal control system to modify the angles of various body parts.
 * Non-Modal Control System
 The camera can be zoomed outside of the modal control system. That is, no matter
-what mode you are in, you can rotate the camera.
+what mode you are in, you can zoom the camera.
 
 To zoom the camera, click and drag the mouse up and down.
 * Modal Control System
