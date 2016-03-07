@@ -16,10 +16,11 @@ Mode* Mode::instance = nullptr;
 
 static inline std::string stringFromMode(Mode::mode_t mode) {
   static const std::string strings[] = {
-    "NORMAL", "CAMERA", "CAMERA_PAN", "HEAD", "LEGS", "LEG1", "LEG2", "LEG3", "LEG4",
-    "LEG5", "LEG6", "LEG1_UPPER", "LEG1_LOWER", "LEG2_UPPER", "LEG2_LOWER",
-    "LEG3_UPPER", "LEG3_LOWER", "LEG4_UPPER", "LEG4_LOWER", "LEG5_UPPER",
-    "LEG5_LOWER", "LEG6_UPPER", "LEG6_LOWER" };
+    "NORMAL", "CAMERA", "CAMERA_PAN", "CAMERA_DRIVE", "HEAD",
+    "LEGS", "LEG1", "LEG2", "LEG3", "LEG4", "LEG5", "LEG6",
+    "LEG1_UPPER", "LEG1_LOWER", "LEG2_UPPER", "LEG2_LOWER",
+    "LEG3_UPPER", "LEG3_LOWER", "LEG4_UPPER", "LEG4_LOWER",
+    "LEG5_UPPER", "LEG5_LOWER", "LEG6_UPPER", "LEG6_LOWER" };
 
   return strings[mode];
 }
@@ -46,6 +47,9 @@ void Mode::keyboardEvent(unsigned char key, Vector2 mousePosition) {
   if (mode == CAMERA) {
     if (key == 'p') {
       mode = CAMERA_PAN;
+    }
+    if (key == 'd') {
+      mode = CAMERA_DRIVE;
     }
   }
 

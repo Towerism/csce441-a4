@@ -58,23 +58,39 @@ void Camera::normalizeZoom() {
 }
 
 void Camera::keyboardEvent(unsigned char key, Vector2 mousePosition) {
-  int delta = 1;
+  Mode::mode_t mode = Mode::getInstance()->getMode();
 
-  if (Mode::getInstance()->getMode() != Mode::CAMERA_PAN)
-    return;
+  if (mode == Mode::CAMERA_PAN) {
+    pan(key);
+  } else if (mode == Mode::CAMERA_DRIVE) {
+    drive(key);
+  }
+}
 
+void Camera::pan(unsigned char key) {
   switch(key) {
   case 'w':
-    position.y += delta;
-    break;
+      position.y += 1;
+      break;
   case 'a':
-    position.x -= delta;
+      position.x -= 1;
+      break;
+  case 's':
+      position.y -= 1;
+      break;
+  case 'd':
+      position.x += 1;
+      break;
+  }
+}
+
+void Camera::drive(unsigned char key) {
+  switch(key) {
+  case 'w':
+    position.z -= 1;
     break;
   case 's':
-    position.y -= delta;
-    break;
-  case 'd':
-    position.x += delta;
+    position.z += 1;
     break;
   }
 }

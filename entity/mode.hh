@@ -20,6 +20,7 @@ public:
     NORMAL,
     CAMERA,
     CAMERA_PAN,
+    CAMERA_DRIVE,
     HEAD,
     LEGS,
     LEG1, LEG2, LEG3,

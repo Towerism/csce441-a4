@@ -27,6 +27,10 @@ private:
   float lookAtX, lookAtY, lookAtZ;
   int prevMouseY;
   float zoom;
+  const int positive = -1;
+  const int negative = 1;
 
   void normalizeZoom();
+  void pan(unsigned char key);
+  void drive(unsigned char key);
 };
